@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.db.models import Q
 
 from django.contrib.auth.backends import ModelBackend
@@ -7,7 +9,7 @@ from account.models import EmailAddress
 
 
 class UsernameAuthenticationBackend(ModelBackend):
-    
+
     def authenticate(self, **credentials):
         try:
             user = User.objects.get(username__iexact=credentials["username"])
@@ -21,7 +23,7 @@ class UsernameAuthenticationBackend(ModelBackend):
                return None 
 
 class EmailAuthenticationBackend(ModelBackend):
-    
+
     def authenticate(self, **credentials):
         qs = EmailAddress.objects.filter(Q(primary=True) | Q(verified=True))
         try:

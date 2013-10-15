@@ -1,10 +1,12 @@
+from __future__ import unicode_literals
+
 from django.contrib import admin
 
 from account.models import Account, SignupCode, AccountDeletion
 
 
 class SignupCodeAdmin(admin.ModelAdmin):
-    
+
     list_display = ["code", "max_uses", "use_count", "expiry", "created"]
     search_fields = ["code", "email"]
     list_filter = ["created"]
